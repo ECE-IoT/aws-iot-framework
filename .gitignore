@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Hide some OS X stuff
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+.pioenvs
+.piolibdeps
+.pio
+.vscode/
+!.vscode/settings.json

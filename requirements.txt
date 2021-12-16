@@ -1,0 +1,14 @@
+# ESP related modules
+platformio==5.2.2
+pyserial==3.5
+esptool==3.2
+PyYAML==6.0
+reedsolo>=1.5.3,<=1.5.4
+bitstring>=3.1.6
+ecdsa>=0.16.0
+
+#AWS related modules
+boto3
+pandas
+matplotlib
+
