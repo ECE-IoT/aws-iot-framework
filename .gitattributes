@@ -1,2 +1,4 @@
 # Normalize line endings to LF in the repository
-* text eol=lf
+* text=auto
+*.sh text eol=lf
+*.png text eol=crlf

@@ -1,0 +1,29 @@
+name: Requirement ⚡️
+description: Create a new requirement / feature for this Project
+title: "[ESP-FEATURE] <title>"
+labels: ["requirement", "enhancement"]
+body:
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Wrap up the feature description in some short sentences
+      placeholder: As developers we want...
+    validations:
+      required: true
+  - type: checkboxes
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - label: HIGH
+        - label: MEDIUM
+        - label: LOW
+  - type: input
+    id: done-criteria
+    attributes:
+      label: Done Criteria
+      description: Define detailed criteria when this requirement is fulfilled
+      placeholder: Tested and refactored class xyz...
+    validations:
+      required: true
