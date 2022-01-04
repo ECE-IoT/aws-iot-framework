@@ -75,14 +75,14 @@ apt_get_update_if_needed()
 if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
 
     package_list="apt-utils \
-        python3=3.9.2-3 \
-        python3-pip=20.3.4-4 \
-        python3-setuptools=52.0.0-4 \
-        python3-pil=8.1.2+dfsg-0.3 \
-        python3-cryptography=3.3.2-1 \
-        iputils-ping=3:20210202-1 \
-        git=1:2.30.2-1 \
-        curl=7.74.0-1.3+b1 \
+        python3 \
+        python3-pip\
+        python3-setuptools\
+        python3-pil \
+        python3-cryptography \
+        iputils-ping \
+        git \
+        curl\
         openssh-client \
         curl \
         wget \

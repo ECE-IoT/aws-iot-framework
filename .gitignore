@@ -12,3 +12,6 @@ Icon
 .pio
 .vscode/
 !.vscode/settings.json
+
+# does not need to be synched, just for mkdocs locally
+site/
