@@ -7,8 +7,8 @@ repo_url: https://github.com/ECE-IoT/aws-iot-framework
 theme:
   name: material
   language: en
-  logo: /assets/logo.png
-  favicon: /assets/logo.png
+  logo: /assets/logo-1.png
+  favicon: /assets/logo-1.png
   features:
     - navigation.tabs
     - navigation.top
