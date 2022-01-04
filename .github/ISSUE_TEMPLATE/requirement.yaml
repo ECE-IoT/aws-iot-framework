@@ -1,6 +1,6 @@
 name: Requirement ⚡️
 description: Create a new requirement / feature for this Project
-title: "[ESP-FEATURE] <title>"
+title: "[AWS-FEATURE] <title>"
 labels: ["requirement", "enhancement"]
 body:
   - type: textarea
