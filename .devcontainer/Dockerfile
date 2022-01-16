@@ -12,5 +12,5 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 COPY library-scripts/*.sh library-scripts/*.env /tmp/library-scripts/
 RUN bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" "true" "true"
-RUN bash /tmp/library-scripts/setup-aws-cli.sh \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
