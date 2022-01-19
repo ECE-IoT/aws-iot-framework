@@ -1,6 +1,7 @@
 site_name: AWS IoT Framework
 nav:
   - Home: index.md
+  - AWS Timestream: timestream/ts.md
 
 repo_url: https://github.com/ECE-IoT/aws-iot-framework
 
