@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: IOT Tst Template
+Resources:
+  AlexaSampleFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: python3.9
+      CodeUri: AlexaSampleFunction
+      Environment: null
+      Description: Voice Interface of the IOT Project
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        Alexa:
+          Type: AlexaSkill
+    Metadata:
+      SamResourceId: AlexaSampleFunction
+Outputs:
+  AlexaSampleFunctionArn:
+    Value:
+      Fn::GetAtt:
+      - AlexaSampleFunction
+      - Arn
+    Export:
+      Name:
+        Fn::Sub: ${AWS::StackName}:AlexaSampleFunction:Arn
