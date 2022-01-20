@@ -1,4 +1,81 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  {{ cookiecutter.project_name }}
+  aws-iot-framework-stack
+
+Parameters:
+  AppName:
+    Default: aws-iot-framework
+    Type: String
+    Description: Name of the Framework
+  AppEnvironment:
+    Type: String
+    Description: Environment of this stack
+  RegisterTopic:
+    Type: String
+    Description: Topic which is used by an ESP32 to send a inital request to AWS IoT
+  Region:
+    Default: eu-central-1
+    Type: String
+    Description: Region of the Lambda
+
+Globals:
+  Function:
+    Timeout: 5
+    Environment:
+      Variables:
+        LOG_LEVE: DEBUG
+    Runtime: python3.9
+
+Resources:
+  RegisterDeviceLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/RegisterDeviceLambda
+      Handler: app.lambda_handler
+      Description: Lambda which registers a new ESP32 Device at Timestream
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TopicTable
+      Environment:
+        Variables:
+          REGISTER_TOPIC: !Ref RegisterTopic
+          REGION: !Ref Region
+      Events:
+        IoT:
+          Type: IoTRule
+          Properties:
+            Sql: "SELECT * FROM 'init/#'"
+
+  TopicTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "TopicTable"
+      KeySchema:
+        - AttributeName: "ESP_MAC"
+          KeyType: "HASH"
+        - AttributeName: "ESP_ID"
+          KeyType: "RANGE"
+      AttributeDefinitions:
+        - AttributeName: "ESP_MAC"
+          AttributeType: "S"
+        - AttributeName: "ESP_ID"
+          AttributeType: "S"
+        - AttributeName: "ESP_TIME_STAMP"
+          AttributeType: "S"
+      GlobalSecondaryIndexes:
+        - IndexName: time_stamp
+          KeySchema:
+            - AttributeName: ESP_TIME_STAMP
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      TimeToLiveSpecification:
+        AttributeName: expiration_ts
+        Enabled: true
+      BillingMode: PAY_PER_REQUEST
+
+Outputs:
+  TopicTable:
+    Description: "TopicTable"
+    Value: !Ref TopicTable
