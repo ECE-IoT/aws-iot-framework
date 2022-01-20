@@ -1,23 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  aws-iot-framework-stack
-
-Parameters:
-  AppName:
-    Default: aws-iot-framework
-    Type: String
-    Description: Name of the Framework
-  AppEnvironment:
-    Type: String
-    Description: Environment of this stack
-  RegisterTopic:
-    Type: String
-    Description: Topic which is used by an ESP32 to send a inital request to AWS IoT
-  Region:
-    Default: eu-central-1
-    Type: String
-    Description: Region of the Lambda
+Description: IOT Tst Template
 
 Globals:
   Function:
@@ -28,54 +11,37 @@ Globals:
     Runtime: python3.9
 
 Resources:
-  RegisterDeviceLambda:
+  AlexaSampleFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: lambdas/RegisterDeviceLambda
-      Handler: app.lambda_handler
-      Description: Lambda which registers a new ESP32 Device at Timestream
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref TopicTable
+      Layers:
+        - arn:aws:lambda:us-east-1:173334852312:layer:ask-sdk-for-python-36:1
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      CodeUri: lambdas/AlexaSkillLambda
       Environment:
-        Variables:
-          REGISTER_TOPIC: !Ref RegisterTopic
-          REGION: !Ref Region
+      Description: Voice Interface of the IOT Project
+      MemorySize: 128
+      Timeout: 8
       Events:
-        IoT:
-          Type: IoTRule
-          Properties:
-            Sql: "SELECT * FROM 'init/#'"
-
-  TopicTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: "TopicTable"
-      KeySchema:
-        - AttributeName: "ESP_MAC"
-          KeyType: "HASH"
-        - AttributeName: "ESP_ID"
-          KeyType: "RANGE"
-      AttributeDefinitions:
-        - AttributeName: "ESP_MAC"
-          AttributeType: "S"
-        - AttributeName: "ESP_ID"
-          AttributeType: "S"
-        - AttributeName: "ESP_TIME_STAMP"
-          AttributeType: "S"
-      GlobalSecondaryIndexes:
-        - IndexName: time_stamp
-          KeySchema:
-            - AttributeName: ESP_TIME_STAMP
-              KeyType: HASH
-          Projection:
-            ProjectionType: ALL
-      TimeToLiveSpecification:
-        AttributeName: expiration_ts
-        Enabled: true
-      BillingMode: PAY_PER_REQUEST
-
+        AlexaTrigger:
+          Type: AlexaSkill
+Metadata:
+  Name: alexa-skills-lambda-function
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Parameters:
+          - SkillFunctionName
+          - SkillDescription
+        Label:
+          default: Lambda Function
+    ParameterLabels:
+      SkillDescription:
+        default: What should the function description be?
+      SkillFunctionName:
+        default: What should the function be named?
 Outputs:
-  TopicTable:
-    Description: "TopicTable"
-    Value: !Ref TopicTable
+  AlexaSampleFunctionArn:
+    Description: "IOT Lambda Function ARN"
+    Value: !GetAtt AlexaSampleFunction.Arn
+    Export: { Name: !Sub "${AWS::StackName}:AlexaSampleFunction:Arn" }
