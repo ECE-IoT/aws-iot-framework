@@ -24,7 +24,8 @@
     "ms-python.python",
     "visualstudioexptteam.vscodeintellicode",
     "editorconfig.editorconfig",
-    "amazonwebservices.aws-toolkit-vscode"
+    "amazonwebservices.aws-toolkit-vscode",
+    "redhat.vscode-yaml"
   ],
   "forwardPorts": [
     8008

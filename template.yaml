@@ -50,17 +50,26 @@ Resources:
   TopicTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: "DeviceTable"
+      TableName: "TopicTable"
       KeySchema:
-        - AttributeName: "PK"
+        - AttributeName: "ESP_MAC"
           KeyType: "HASH"
-        - AttributeName: "SK"
+        - AttributeName: "ESP_ID"
           KeyType: "RANGE"
       AttributeDefinitions:
-        - AttributeName: "PK"
+        - AttributeName: "ESP_MAC"
           AttributeType: "S"
-        - AttributeName: "SK"
+        - AttributeName: "ESP_ID"
           AttributeType: "S"
+        - AttributeName: "ESP_TIME_STAMP"
+          AttributeType: "S"
+      GlobalSecondaryIndexes:
+        - IndexName: time_stamp
+          KeySchema:
+            - AttributeName: ESP_TIME_STAMP
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
       TimeToLiveSpecification:
         AttributeName: expiration_ts
         Enabled: true
