@@ -18,6 +18,14 @@ Parameters:
     Default: eu-central-1
     Type: String
     Description: Region of the Lambda
+  DynamoDBTable:
+    Default: "TopicTable"
+    Type: String
+    Description: DynamoDB Table Name
+  TimestreamTable:
+    Default: "DataTable"
+    Type: String
+    Description: Timestream Table Name
 
 Globals:
   Function:
@@ -45,12 +53,12 @@ Resources:
         IoT:
           Type: IoTRule
           Properties:
-            Sql: "SELECT * FROM 'init/#'"
+            Sql: "SELECT * FROM 'init'"
 
   TopicTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: "TopicTable"
+      TableName: !Ref DynamoDBTable
       KeySchema:
         - AttributeName: "ESP_MAC"
           KeyType: "HASH"
@@ -61,15 +69,6 @@ Resources:
           AttributeType: "S"
         - AttributeName: "ESP_ID"
           AttributeType: "S"
-        - AttributeName: "ESP_TIME_STAMP"
-          AttributeType: "S"
-      GlobalSecondaryIndexes:
-        - IndexName: time_stamp
-          KeySchema:
-            - AttributeName: ESP_TIME_STAMP
-              KeyType: HASH
-          Projection:
-            ProjectionType: ALL
       TimeToLiveSpecification:
         AttributeName: expiration_ts
         Enabled: true
