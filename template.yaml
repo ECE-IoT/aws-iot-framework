@@ -23,7 +23,7 @@ Parameters:
     Type: String
     Description: DynamoDB Table Name
   TimestreamTable:
-    Default: "DataTable"
+    Default: "measurement_fleet"
     Type: String
     Description: Timestream Table Name
 
@@ -36,6 +36,43 @@ Globals:
     Runtime: python3.9
 
 Resources:
+  TimeStreamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Policies:
+        - PolicyName: "TimestreamAccess"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "timestream:*"
+                  - "dynamodb:*"
+                  - "s3:*"
+                  - "iam:ListRoles"
+                  - "ses:*"
+                  - "events:*"
+                Resource: "*"
+        - PolicyName: "CloudWatchAccess"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "*"
+
   RegisterDeviceLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -49,6 +86,7 @@ Resources:
         Variables:
           REGISTER_TOPIC: !Ref RegisterTopic
           REGION: !Ref Region
+      Role: !GetAtt TimeStreamRole.Arn
       Events:
         IoT:
           Type: IoTRule

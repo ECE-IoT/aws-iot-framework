@@ -24,7 +24,7 @@ deploy: ##=> Deploy app using previously saved SAM CLI configuration
 
 hurry: ##=> Run full workflow for the first time
 	$(MAKE) build
-	$(MAKE) deploy.guided
+	$(MAKE) deploy
 
 #############
 #  Helpers  #

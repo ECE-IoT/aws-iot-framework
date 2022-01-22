@@ -25,7 +25,8 @@
     "visualstudioexptteam.vscodeintellicode",
     "editorconfig.editorconfig",
     "amazonwebservices.aws-toolkit-vscode",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "kddejong.vscode-cfn-lint"
   ],
   "forwardPorts": [
     8008
