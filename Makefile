@@ -19,12 +19,18 @@ build: ##=> Same as package except that we don't create a ZIP
 deploy.guided: ##=> Guided deploy that is typically run for the first time only
 	sam deploy --guided
 
+deploy.access.guided:
+	sam deploy --guided --capabilities CAPABILITY_NAMED_IAM
+
+deploy.access:
+	sam deploy --capabilities CAPABILITY_NAMED_IAM
+
 deploy: ##=> Deploy app using previously saved SAM CLI configuration
 	sam deploy
 
 hurry: ##=> Run full workflow for the first time
 	$(MAKE) build
-	$(MAKE) deploy
+	$(MAKE) deploy.access
 
 #############
 #  Helpers  #
