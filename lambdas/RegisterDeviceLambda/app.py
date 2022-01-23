@@ -1,10 +1,7 @@
-from threading import local
 from tokenize import String
-from urllib import response
 import boto3
 import os
-import json
-from boto3.dynamodb.conditions import Attr, Key
+from boto3.dynamodb.conditions import Key
 
 DYNAMO_DB = 'dynamodb'
 TIMESTREAM = 'timestream'
@@ -33,7 +30,7 @@ def lambda_handler(message, context):
     iam_client = boto3.client('iam')
     iot_client = boto3.client('iot')
     timestream_role = iam_client.get_role(RoleName=IOT_ROLE)['Role']
-    iot_sql_topic = f"SELECT * FROM '{device_name}/#'"
+    iot_sql_topic = f"SELECT VALUE FROM '{device_name}/#'"
 
     if timestream_role:
         role_arn = timestream_role['Arn']
