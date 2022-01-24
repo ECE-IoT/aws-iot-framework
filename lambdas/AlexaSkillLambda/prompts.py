@@ -25,7 +25,7 @@ def response(sensor_type, position):
 
 
 def fetch_sensor_response(sensor_type, position):
-    measured_object = get_sensor_value('temperature', 'RoomX')
+    measured_object = get_sensor_value(sensor_type, position)
     value = float()
 
     for val in measured_object:
@@ -35,7 +35,7 @@ def fetch_sensor_response(sensor_type, position):
     name = measured_object[0]['SensorType']
     unit = measured_object[0]['Unit']
 
-    print(f"The {name} is {value} {unit}")
+    return (f"The {name} is {value} {unit}")
 
 
 def get_sensor_value(sensor_type, position):
