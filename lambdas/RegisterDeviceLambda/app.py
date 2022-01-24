@@ -6,7 +6,7 @@ from boto3.dynamodb.conditions import Key
 DYNAMO_DB = 'dynamodb'
 TIMESTREAM = 'timestream'
 TIMESTEAM_ROLE = 'TimestreamRole'
-IOT_ROLE = "IoTRule"
+IOT_ROLE = "IoTRole"
 TS_DB_NAME = "measurement_fleet"
 ATTR_ESP_MAC = 'ESP_MAC'
 ATTR_ESP_ID = 'ESP_ID'
@@ -125,11 +125,15 @@ def lambda_handler(message, context):
                         'name': 'MeasurementTime',
                         'value': '${TIME}'
                     },
-                ]
+                ],
+                'timestamp': {
+                    'value': '${TIME}',
+                    'unit': 'SECONDS'
+                }
             }
             }
         ],
         'ruleDisabled': False,
     })
 
-    print(f"LOG: new IoTRule created, log message: {new_iot_rule}")
+    print(f"LOG: new Rule created, log message: {new_iot_rule}")

@@ -65,10 +65,10 @@ Resources:
                   - "logs:CreateLogStream"
                   - "logs:PutLogEvents"
                 Resource: "*"
-  IoTRule:
+  IoTRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: "IoTRule"
+      RoleName: "IoTRole"
       ManagedPolicyArns:
         - "arn:aws:iam::aws:policy/AWSIoTFullAccess"
         - "arn:aws:iam::aws:policy/service-role/AWSIoTRuleActions"
