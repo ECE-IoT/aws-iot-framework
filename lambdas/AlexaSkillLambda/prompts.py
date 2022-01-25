@@ -34,8 +34,9 @@ def fetch_sensor_response(sensor_type, position):
     value = value / len(measured_object)
     name = measured_object[0]['SensorType']
     unit = measured_object[0]['Unit']
+    position = measured_object[0]['Location']
 
-    return (f"The {name} is {value} {unit}")
+    print(f"The {name} is {value} {unit} in {position}")
 
 
 def get_sensor_value(sensor_type, position):
@@ -59,7 +60,7 @@ def get_sensor_value(sensor_type, position):
     for device in devices:
         data_value = list()
         column_list = list()
-        query = f"SELECT * FROM {TIMESTREAM_DB}.{device} WHERE SensorType = '{sensor_type}' LIMIT 1"
+        query = f"SELECT * FROM {TIMESTREAM_DB}.{device} WHERE SensorType = '{sensor_type}' AND Location = '{position}' LIMIT 1"
         result = timestream_client.query(QueryString=query)
 
         data = result['Rows'][0]['Data']
