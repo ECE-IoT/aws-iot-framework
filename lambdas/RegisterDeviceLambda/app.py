@@ -125,6 +125,10 @@ def lambda_handler(message, context):
                         'name': 'MeasurementTime',
                         'value': '${TIME}'
                     },
+                    {
+                        'name': 'Location',
+                        'value': '${LOCATION}'
+                    },
                 ],
                 'timestamp': {
                     'value': '${TIME}',
