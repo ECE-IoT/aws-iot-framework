@@ -2,6 +2,7 @@
 boto3
 awscli
 aws-sam-cli
+cfn-lint
 
 #calculation related modules
 pandas

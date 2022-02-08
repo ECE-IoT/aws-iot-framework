@@ -4,13 +4,6 @@ Description: >
   aws-iot-framework-stack
 
 Parameters:
-  AppName:
-    Default: aws-iot-framework
-    Type: String
-    Description: Name of the Framework
-  AppEnvironment:
-    Type: String
-    Description: Environment of this stack
   RegisterTopic:
     Type: String
     Description: Topic which is used by an ESP32 to send a inital request to AWS IoT
@@ -18,6 +11,10 @@ Parameters:
     Default: eu-central-1
     Type: String
     Description: Region of the Lambda
+  DynamoDBTable:
+    Default: "TopicTable"
+    Type: String
+    Description: DynamoDB Table Name
 
 Globals:
   Function:
@@ -28,6 +25,65 @@ Globals:
     Runtime: python3.9
 
 Resources:
+  TimeStreamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "TimestreamRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AWSIoTFullAccess"
+        - "arn:aws:iam::aws:policy/service-role/AWSIoTRuleActions"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+                - "iot.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Policies:
+        - PolicyName: "TimestreamAccess"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "timestream:*"
+                  - "dynamodb:*"
+                  - "s3:*"
+                  - "iam:*"
+                  - "events:*"
+                Resource: "*"
+        - PolicyName: "CloudWatchAccess"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "*"
+  IoTRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "IoTRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AWSIoTFullAccess"
+        - "arn:aws:iam::aws:policy/service-role/AWSIoTRuleActions"
+        - "arn:aws:iam::aws:policy/AmazonTimestreamFullAccess"
+        - "arn:aws:iam::aws:policy/IAMFullAccess"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - "iot.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+
   RegisterDeviceLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -41,16 +97,17 @@ Resources:
         Variables:
           REGISTER_TOPIC: !Ref RegisterTopic
           REGION: !Ref Region
+      Role: !GetAtt TimeStreamRole.Arn
       Events:
         IoT:
           Type: IoTRule
           Properties:
-            Sql: "SELECT * FROM 'init/#'"
+            Sql: "SELECT * FROM 'init'"
 
   TopicTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: "TopicTable"
+      TableName: !Ref DynamoDBTable
       KeySchema:
         - AttributeName: "ESP_MAC"
           KeyType: "HASH"
@@ -61,15 +118,6 @@ Resources:
           AttributeType: "S"
         - AttributeName: "ESP_ID"
           AttributeType: "S"
-        - AttributeName: "ESP_TIME_STAMP"
-          AttributeType: "S"
-      GlobalSecondaryIndexes:
-        - IndexName: time_stamp
-          KeySchema:
-            - AttributeName: ESP_TIME_STAMP
-              KeyType: HASH
-          Projection:
-            ProjectionType: ALL
       TimeToLiveSpecification:
         AttributeName: expiration_ts
         Enabled: true
