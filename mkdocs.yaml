@@ -1,29 +1,32 @@
 site_name: AWS IoT Framework
 nav:
   - Home: index.md
-  - AWS Timestream: timestream/ts.md
+  - AWS:
+      CLI: aws/cli/configuration-basics.md
+      IAM: aws/iam/iam.md
+      Timestream: aws/timestream/ts.md
 
 repo_url: https://github.com/ECE-IoT/aws-iot-framework
 
 theme:
   name: material
   language: en
-  logo: /assets/logo-1.png
-  favicon: /assets/logo-1.png
+  logo: assets/logo.png
+  favicon: assets/logo.png
   features:
     - navigation.tabs
     - navigation.top
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: light-blue
+      primary: deep orange
+      accent: teal
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
+      primary: teal
       accent: deep orange
       toggle:
         icon: material/toggle-switch
