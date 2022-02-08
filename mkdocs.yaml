@@ -3,7 +3,7 @@ nav:
   - Home: index.md
   - AWS:
       CLI: aws/cli/configuration-basics.md
-      IAM: aws/iam/iam.md
+      IAM: aws/iam/basic-configuration.md
       Timestream: aws/timestream/ts.md
 
 repo_url: https://github.com/ECE-IoT/aws-iot-framework
