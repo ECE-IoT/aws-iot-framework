@@ -2,13 +2,13 @@ site_name: AWS IoT Framework
 nav:
   - Home: https://ece-iot.github.io
   - Core: https://ece-iot.github.io/esp-iot-framework/core/
-  - Sensors: https://ece-iot.github.io/esp-iot-framework/sensors/
+  - Sensors: https://ece-iot.github.io/esp-iot-framework/sensors/introduction/
   - AWS:
       CLI: aws/cli/configuration-basics.md
       IAM: aws/iam/basic-configuration.md
       Timestream: aws/timestream/ts.md
   - Alexa: alexa/index.md
-  - Hardware: https://ece-iot.github.io/hardware/
+  - Hardware: https://ece-iot.github.io/hardware/hardware/description/
 
 repo_url: https://github.com/ECE-IoT/aws-iot-framework
 
