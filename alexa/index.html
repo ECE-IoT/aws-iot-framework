@@ -22,6 +22,9 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
+<a class="md-skip" href="#alexa-skill">
+          Skip to content
+        </a>
 </div>
 <div data-md-component="announce">
 </div>
@@ -203,14 +206,61 @@
         Timestream
       </a>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" id="__nav_4_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_4">
+          Lambda
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Lambda" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          Lambda
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../aws/lambda/alexa/">
+        Alexa
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../aws/lambda/timestreamRegister/">
+        Device Registration
+      </a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Alexa
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         Alexa
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#requierments">
+    Requierments
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tutorial">
+    Tutorial
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="https://ece-iot.github.io/hardware/hardware/description/">
@@ -222,18 +272,78 @@
 </div>
 </div>
 </div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#requierments">
+    Requierments
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tutorial">
+    Tutorial
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <a class="md-content__button md-icon" href="https://github.com/ECE-IoT/aws-iot-framework/edit/master/docs/alexa/index.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1>Alexa</h1>
+<h1 id="alexa-skill">Alexa Skill</h1>
+<p>In this section it's shown how to set up an Alexa Skill to address the sensor values which are saved in <code>timestream</code>.</p>
+<h2 id="requierments">Requierments</h2>
+<p>You need an Amazon account to create a skill on the Alexa Developer page.</p>
+<p><a href="https://developer.amazon.com/de-DE/alexa/alexa-skills-kit">Amazon Alexa Developer</a></p>
+<h2 id="tutorial">Tutorial</h2>
+<p>When you create a new skill, you have to select a few points for the basic configuration.</p>
+<p><img alt="" src="Start_New_Skill.png"/></p>
+<p>The name is freely selectable and only serves to enable the skill to be found and assigned.
+ The next step is to select the desired language. This is very important because you have to decide how to call up the skill.
+ In our setup, we have selected the options <strong>Custom</strong> and <strong>Provision your own</strong> for the next two items, as we do not use a prefabricated tool from Amazon, but control everything via our own Lambda function</p>
+<p>For the development of your Alexa skill, there is a graphical user interface that reduces programming and manual intervention in the code, to a minimum. The editing view of the Alexa development console is divided into five areas:</p>
+<ol>
+<li>Build (development)</li>
+<li>Test</li>
+<li>Distribution (Publication)</li>
+<li>Certification</li>
+<li>Analytics (analysis).</li>
+</ol>
+<p><img alt="" src="Invocation.png"/></p>
+<p>The first step in the skill is to set the <strong>invocation</strong>. There are a few things to consider here. The phrase must consist of at least two words. It should also be a fairly unique phrase to avoid misunderstandings.
+ From now on, you control your skill via the <strong>intents</strong>. After you have called up the skill with the help of the <strong>invocation</strong>, you call up the individual functions practically with the <strong>intents</strong>. With Intents, you define actions that your Alexa Skill will perform as soon as a user uses a speech pattern you specify.</p>
+<p><img alt="" src="Intents.png"/></p>
+<p>There are some essential intents that are required by Amazon. For example, the <strong>StopIntent</strong> to stop the skill.</p>
+<p><img alt="" src="Example_Intent.png"/></p>
+<p>Define sample phrases with which users can call up the new intent. Enter the desired phrase in the text field provided and click on the plus sign (+).
+ You can also use slots in these sample utterances. With these, you can define certain variables in the desired sentence structure.
+ You simply give the slot a name and assign it a slot type.
+ In the slot type you can then define possible inputs</p>
+<p><img alt="" src="SlotType.png"/></p>
+<p>When you have finished, you can build the model.
+ If everything went right in the build process, you can look at the finished interaction model of your skill in the JSON editor.
+ Our JSON document contains the intents of our Alexa skill as well as the sample utterances assigned to the intents (if available). It thus includes all interaction options that are available on the user side.</p>
+<p><img alt="" src="JSON_File.png"/></p>
+<p>The last thing to do is to connect the skill with the lambda function.</p>
+<p><img alt="" src="Endpoint.png"/></p>
+<p>For this, you must enter the AWS ARN of the lambda function and the skill ID is also required for the lambda function in order to define it as a trigger event.</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       Last update:
-      2022-02-08
+      2022-02-14
     
   </small>
 </div>
@@ -247,7 +357,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Timestream" class="md-footer__link md-footer__link--prev" href="../aws/timestream/ts/" rel="prev">
+<a aria-label="Previous: Device Registration" class="md-footer__link md-footer__link--prev" href="../aws/lambda/timestreamRegister/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
 </div>
@@ -256,7 +366,7 @@
 <span class="md-footer__direction">
                 Previous
               </span>
-              Timestream
+              Device Registration
             </div>
 </div>
 </a>

@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../../assets/logo.png" rel="icon"/>
+<meta content="mkdocs-1.2.3, mkdocs-material-8.1.7" name="generator"/>
+<title>Alexa - AWS IoT Framework</title>
+<link href="../../../assets/stylesheets/main.cd566b2a.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.e6a45f82.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="teal" data-md-color-primary="deep-orange" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#lambda-function-for-alexa-skill">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="AWS IoT Framework" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="AWS IoT Framework">
+<img alt="logo" src="../../../assets/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            AWS IoT Framework
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Alexa
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="teal" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="deep-orange" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="deep-orange" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="teal" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ECE-IoT/aws-iot-framework/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="https://ece-iot.github.io">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="https://ece-iot.github.io/esp-iot-framework/core/">
+      Core
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="https://ece-iot.github.io/esp-iot-framework/sensors/introduction/">
+      Sensors
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../cli/configuration-basics/">
+        AWS
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../alexa/">
+      Alexa
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="https://ece-iot.github.io/hardware/hardware/description/">
+      Hardware
+    </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="AWS IoT Framework" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="AWS IoT Framework">
+<img alt="logo" src="../../../assets/logo.png"/>
+</a>
+    AWS IoT Framework
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ECE-IoT/aws-iot-framework/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="https://ece-iot.github.io">
+        Home
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="https://ece-iot.github.io/esp-iot-framework/core/">
+        Core
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="https://ece-iot.github.io/esp-iot-framework/sensors/introduction/">
+        Sensors
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          AWS
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="AWS" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          AWS
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cli/configuration-basics/">
+        CLI
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../iam/basic-configuration/">
+        IAM
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../timestream/ts/">
+        Timestream
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" id="__nav_4_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_4">
+          Lambda
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Lambda" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          Lambda
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Alexa
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Alexa
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conection-to-the-lambda-function">
+    Conection to the Lambda Function
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lambda-handler">
+    Lambda Handler
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#intent-connection-handler">
+    Intent Connection Handler
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#custom-intent-handler">
+    Custom Intent Handler
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#timestream-query-function">
+    Timestream Query Function
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../timestreamRegister/">
+        Device Registration
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../alexa/">
+        Alexa
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="https://ece-iot.github.io/hardware/hardware/description/">
+        Hardware
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conection-to-the-lambda-function">
+    Conection to the Lambda Function
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lambda-handler">
+    Lambda Handler
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#intent-connection-handler">
+    Intent Connection Handler
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#custom-intent-handler">
+    Custom Intent Handler
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#timestream-query-function">
+    Timestream Query Function
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/ECE-IoT/aws-iot-framework/edit/master/docs/aws/lambda/alexa.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1 id="lambda-function-for-alexa-skill">Lambda function for Alexa Skill</h1>
+<p>In this part some basic part of the Lambda function for our Alexa Skill explained.
+The Lambda function and the Alexa Skill communicate via the exchange of JSON files. The JSON files must always have a correct format, otherwise an error will occur.
+Our function was written in Python. Node.js is also supported.</p>
+<h2 id="conection-to-the-lambda-function">Conection to the Lambda Function</h2>
+<p>First you have to select the Alexa Skill as a trigger event. To do this, you must enter the <strong>Skill-ID</strong></p>
+<p><img alt="" src="../AWS_Lambda_Alexa.png"/></p>
+<h2 id="lambda-handler">Lambda Handler</h2>
+<p><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"event.session.application.applicationId="</span> <span class="o">+</span>
+              <span class="n">event</span><span class="p">[</span><span class="s1">'session'</span><span class="p">][</span><span class="s1">'application'</span><span class="p">][</span><span class="s1">'applicationId'</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"event:"</span> <span class="o">+</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s1">'session'</span><span class="p">][</span><span class="s1">'new'</span><span class="p">]:</span>
+            <span class="n">on_session_started</span><span class="p">({</span><span class="s1">'requestId'</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s1">'request'</span><span class="p">][</span><span class="s1">'requestId'</span><span class="p">]},</span>
+                               <span class="n">event</span><span class="p">[</span><span class="s1">'session'</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s1">'request'</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"LaunchRequest"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">on_launch</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">'request'</span><span class="p">],</span> <span class="n">event</span><span class="p">[</span><span class="s1">'session'</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s1">'request'</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"IntentRequest"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">on_intent</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">'request'</span><span class="p">],</span> <span class="n">event</span><span class="p">[</span><span class="s1">'session'</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s1">'request'</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"SessionEndedRequest"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">on_session_ended</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">'request'</span><span class="p">],</span> <span class="n">event</span><span class="p">[</span><span class="s1">'session'</span><span class="p">])</span>
+</code></pre></div>
+This the main part of the Lambda-function. Route the incoming request based on type (LaunchRequest, IntentRequest, etc).
+The JSON body of the request is provided in the event parameter.</p>
+<h2 id="intent-connection-handler">Intent Connection Handler</h2>
+<p><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">on_intent</span><span class="p">(</span><span class="n">intent_request</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"on_intent requestId="</span> <span class="o">+</span> <span class="n">intent_request</span><span class="p">[</span><span class="s1">'requestId'</span><span class="p">]</span> <span class="o">+</span>
+              <span class="s2">", sessionId="</span> <span class="o">+</span> <span class="n">session</span><span class="p">[</span><span class="s1">'sessionId'</span><span class="p">])</span>
+
+        <span class="n">intent</span> <span class="o">=</span> <span class="n">intent_request</span><span class="p">[</span><span class="s1">'intent'</span><span class="p">]</span>
+        <span class="n">intent_name</span> <span class="o">=</span> <span class="n">intent_request</span><span class="p">[</span><span class="s1">'intent'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"***********************intent section***************************"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">intent_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"TimInt"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_timintent_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"MichaelInt"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_michaelintent_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"DanielInt"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_danielintent_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"JanInt"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_janintent_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"MarkusInt"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_markusintent_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"AMAZON.HelpIntent"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_get_help_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"AMAZON.StopIntent"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_finish_session_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intent_name</span> <span class="o">==</span> <span class="s2">"AMAZON.CancelIntent"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">handle_finish_session_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Invalid intent"</span><span class="p">)</span>
+</code></pre></div>
+Called when the user specifies an intent for this skill.
+So if Alexa Skill was able to match your voice command to an intent, this will be passed with the JSON file.
+Each intent is then assigned its own function.
+In this way, you can customise each intent individually.</p>
+<h2 id="custom-intent-handler">Custom Intent Handler</h2>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">handle_timintent_request</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="n">should_end_session</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">user_gave_up</span> <span class="o">=</span> <span class="n">intent</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+        <span class="n">reprompt_text</span> <span class="o">=</span> <span class="s2">"Don't you want to know who you really are, just ask </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">SKILL_NAME</span><span class="p">)</span>
+
+        <span class="n">sensor_result</span> <span class="o">=</span> <span class="n">sensor</span><span class="p">((</span><span class="n">intent</span><span class="p">[</span><span class="s1">'slots'</span><span class="p">][</span><span class="s1">'tim_sensortype'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]),</span> <span class="p">(</span><span class="s2">"esp32_tim"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Lab 124"</span><span class="p">))</span>
+        <span class="n">sensor_result_unit</span> <span class="o">=</span> <span class="n">sensor_unit</span><span class="p">((</span><span class="n">intent</span><span class="p">[</span><span class="s1">'slots'</span><span class="p">][</span><span class="s1">'tim_sensortype'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]),</span> <span class="p">(</span><span class="s2">"esp32_tim"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Lab 124"</span><span class="p">))</span>
+        <span class="n">speech_output</span><span class="o">=</span><span class="p">(</span><span class="s2">"The result of the sensor query is </span><span class="si">{:0.2f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> in Lab 124"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sensor_result</span><span class="p">,</span> <span class="n">sensor_result_unit</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">speech_output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">build_response</span><span class="p">(</span>
+                <span class="p">{},</span>
+                <span class="n">build_speechlet_response</span><span class="p">(</span>
+                    <span class="n">SKILL_NAME</span><span class="p">,</span> <span class="n">speech_output</span><span class="p">,</span> <span class="n">reprompt_text</span><span class="p">,</span> <span class="n">should_end_session</span>
+                <span class="p">))</span>
+</code></pre></div>
+<p>This is a custom skill handler. It is only called when the <code>TimIntent</code> is called.
+In our project, we used the slot to pass the respective sensor type, which is read out of the JSON file.
+To get the sensor value, another function is called to read the data from Timestream.
+After that, everything is passed as a response so that Alexa can read it out.</p>
+<h2 id="timestream-query-function">Timestream Query Function</h2>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">sensor</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">room</span><span class="p">):</span>
+    <span class="n">timestream</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">'timestream-query'</span><span class="p">)</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">room</span>
+    <span class="n">database_name</span> <span class="o">=</span> <span class="s2">"measurement_fleet"</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="n">device</span>
+    <span class="n">sensor</span> <span class="o">=</span> <span class="nb">type</span>
+    <span class="n">QUERY</span> <span class="o">=</span> \
+    <span class="s2">"SELECT * "</span> \
+    <span class="s2">"FROM "</span> <span class="o">+</span> <span class="n">database_name</span> <span class="o">+</span> <span class="s2">"."</span> <span class="o">+</span> <span class="n">table_name</span> <span class="o">+</span><span class="s2">" "</span> \
+    <span class="s2">"WHERE SensorType='"</span><span class="o">+</span><span class="n">sensor</span><span class="o">+</span><span class="s2">"' and Location='"</span><span class="o">+</span><span class="n">location</span><span class="o">+</span><span class="s2">"' "</span> \
+    <span class="s2">"ORDER BY time DESC "</span> \
+    <span class="s2">"LIMIT 1"</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">timestream</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">QueryString</span><span class="o">=</span><span class="n">QUERY</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">'Rows'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'Data'</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="s1">'ScalarValue'</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<p>This the function to get the measurement data from Timestream.
+The Boto3 library from Amazon is used for this purpose.
+You can simply make an SQL query and get the data you are looking for.</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Last update:
+      2022-02-14
+    
+  </small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" data-md-state="hidden" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path></svg>
+            Back to top
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Timestream" class="md-footer__link md-footer__link--prev" href="../../timestream/ts/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Timestream
+            </div>
+</div>
+</a>
+<a aria-label="Next: Device Registration" class="md-footer__link md-footer__link--next" href="../timestreamRegister/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Device Registration
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+<script src="../../../assets/javascripts/bundle.01de222e.min.js"></script>
+</body>
+</html>

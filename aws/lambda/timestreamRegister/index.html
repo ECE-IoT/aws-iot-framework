@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.2.3, mkdocs-material-8.1.7" name="generator"/>
-<title>CLI - AWS IoT Framework</title>
+<title>Device Registration - AWS IoT Framework</title>
 <link href="../../../assets/stylesheets/main.cd566b2a.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.e6a45f82.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -22,7 +22,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#configuration-basics">
+<a class="md-skip" href="#automatic-esp-registration">
           Skip to content
         </a>
 </div>
@@ -46,7 +46,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              CLI
+              Device Registration
             
           </span>
 </div>
@@ -124,7 +124,7 @@
     </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="./">
+<a class="md-tabs__link md-tabs__link--active" href="../../cli/configuration-basics/">
         AWS
       </a>
 </li>
@@ -191,47 +191,10 @@
           AWS
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          CLI
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cli/configuration-basics/">
         CLI
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#setup">
-    Setup
-  </a>
-<nav aria-label="Setup" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#iam-and-aws-security">
-    IAM and AWS Security
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configure-the-terminal">
-    Configure the terminal
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#additional-information">
-    Additional information
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../iam/basic-configuration/">
@@ -243,8 +206,8 @@
         Timestream
       </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" id="__nav_4_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" id="__nav_4_4" type="checkbox"/>
 <label class="md-nav__link" for="__nav_4_4">
           Lambda
           <span class="md-nav__icon md-icon"></span>
@@ -256,14 +219,32 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../lambda/alexa/">
+<a class="md-nav__link" href="../alexa/">
         Alexa
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../lambda/timestreamRegister/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Device Registration
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Device Registration
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sources">
+    Sources
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -296,27 +277,8 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#setup">
-    Setup
-  </a>
-<nav aria-label="Setup" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#iam-and-aws-security">
-    IAM and AWS Security
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configure-the-terminal">
-    Configure the terminal
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#additional-information">
-    Additional information
+<a class="md-nav__link" href="#sources">
+    Sources
   </a>
 </li>
 </ul>
@@ -326,48 +288,23 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/ECE-IoT/aws-iot-framework/edit/master/docs/aws/cli/configuration-basics.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/ECE-IoT/aws-iot-framework/edit/master/docs/aws/lambda/timestreamRegister.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1 id="configuration-basics">Configuration basics</h1>
-<p>This repository initilitzes and configures a docker container which already installs the <strong>AWS CLI</strong> inside. In order to maintain a good security policy, the configuration of the <strong>AWS CLI</strong> can't be done in advance. To use all features this repository provides, the <strong>AWS CLI</strong> needs to be configures right after cloning and initalizing the docker container</p>
-<h2 id="setup">Setup</h2>
-<h3 id="iam-and-aws-security">IAM and AWS Security</h3>
-<p>The setup is rather easy. First make sure that your <strong>AWS account</strong> has a <em>key pair</em> for authentication in the terminal. This part part is often done by an AWS administrator account, who can manage all users.</p>
-<ol>
-<li>Open the <code>IAM Console</code></li>
-<li>Click on <code>users</code> and select the desired user</li>
-<li>Head over to <code>Security credentials / Access key</code></li>
-<li>Click on <code>Create Access key</code></li>
-<li>Next an overlay will pop up and provide you with a downloadable <code>.csv</code> file which stores your:<ol>
-<li><code>AWS Acess Key ID</code></li>
-<li><code>AWS Secret Access Key</code></li>
-</ol>
-</li>
-<li>Keep in mind: the <code>.csv</code> is just downloadable once!</li>
-</ol>
-<h3 id="configure-the-terminal">Configure the terminal</h3>
-<p>With your <em>key pair</em> ready to go, the next step is the configuration of your <strong>AWS CLI</strong> instance</p>
-<p>Therfore type:</p>
-<div class="highlight"><pre><span></span><code>$ aws configure
-</code></pre></div>
-<p>Next there should be guided interface which lets you fill in your credentials</p>
-<div class="highlight"><pre><span></span><code>AWS Access Key ID <span class="o">[</span>None<span class="o">]</span>: your ID
-AWS Secret Access Key <span class="o">[</span>None<span class="o">]</span>: your Secret
-Default region name <span class="o">[</span>None<span class="o">]</span>: your default region
-Default output format <span class="o">[</span>None<span class="o">]</span>: json
-</code></pre></div>
-<h2 id="additional-information">Additional information</h2>
-<p>A detailed configuration documentation can be found at:</p>
-<blockquote>
-<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html</a></p>
-</blockquote>
+<h1 id="automatic-esp-registration">Automatic ESP registration</h1>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html">SAM Templates</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">Cloud Formation</a></li>
+<li><a href="https://docs.aws.amazon.com/iot/?id=docs_gateway">IoT Core</a></li>
+<li><a href="https://docs.aws.amazon.com/de_de/de_de/lambda/latest/dg/welcome.html">AWS Lambda</a></li>
+</ul>
 <hr/>
 <div class="md-source-file">
 <small>
     
       Last update:
-      2022-02-08
+      2022-02-14
     
   </small>
 </div>
@@ -381,13 +318,26 @@ Default output format <span class="o">[</span>None<span class="o">]</span>: json
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Next: IAM" class="md-footer__link md-footer__link--next" href="../../iam/basic-configuration/" rel="next">
+<a aria-label="Previous: Alexa" class="md-footer__link md-footer__link--prev" href="../alexa/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Alexa
+            </div>
+</div>
+</a>
+<a aria-label="Next: Alexa" class="md-footer__link md-footer__link--next" href="../../../alexa/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              IAM
+              Alexa
             </div>
 </div>
 <div class="md-footer__button md-icon">
