@@ -7,6 +7,9 @@ nav:
       CLI: aws/cli/configuration-basics.md
       IAM: aws/iam/basic-configuration.md
       Timestream: aws/timestream/ts.md
+      Lambda:
+        Alexa: aws/lambda/alexa.md
+        Device Registration: aws/lambda/timestreamRegister.md
   - Alexa: alexa/index.md
   - Hardware: https://ece-iot.github.io/hardware/hardware/description/
 
@@ -39,6 +42,7 @@ theme:
 plugins:
   - search
   - git-revision-date
+  - mkdocs-video
   - mkdocstrings
   - mermaid2:
       arguments:
